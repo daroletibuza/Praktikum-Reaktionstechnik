@@ -67,22 +67,23 @@
 		axis lines = left,
 		width = 13cm,
 		height = 7cm,
-		xmin = 0,
-		xmax = 20,
-		ymin = 0,
-		ymax = 0.1,
-		%ytick = {0,2,...,14},
-		%xtick = {0,10,...,100},
-		ylabel={ln(r) in []},
-		xlabel={ln(c) in []},
+		xmin = 0.0032,
+		xmax = 0.0034,
+		ymin = -10,
+		ymax = -8.4,
+		ytick = {-10,-9.75,...,-8.5},
+		xtick = {0.0032,0.00325,...,0.0034},
+		ylabel={ln(k)},
+		y label style={at={(-0.03,0.5)}},
+		xlabel={1/T in [K]},
 		%	legend style={at={(0.5,0.95)},anchor=west}
 		]
-		\addplot table {rt-M-x-replace-string.dat};
+		\addplot table {Arrhenius1.dat};
 		\end{axis}
 		\end{tikzpicture}
 		%	}Ventilkennlinie
-		\caption{Konzentration über der Zeit}
-		\label{dia:lnk/F}
+		\caption{Arrhenius-Diagramm}
+		\label{dia:lnk/(1/T)}
 	\end{center}
 \end{figure}
 \FloatBarrier
