@@ -108,13 +108,13 @@
 	\label{tab:kin_kenn}
 	\makebox[\textwidth]{
 		\resizebox{15cm}{!}{
-			\begin{tabular}{c|c|c|c|c|c}
+			\begin{tabular}{c|c|c|c|c}
 				\hline
-				\textbf{Temperatur in \si{\celsius}} & \textbf{Stoßfaktor k in} &  \textbf{Reaktionsordnung n in} & \textbf{$\ln{\text{k}}$} & \textbf{$\frac{1}{\text{T}}$ in \si{\kelvin}} & (\textbf{$X_{\text{analytisch}}$ in \si{\percent}})\\
-				\hline
-				\SI{23,5}{} & \SI{5,13e-5}{} & \SI{2,21}{} & \SI{-9,88} & \SI{3,37e-3}	& 64 \\
-				\SI{30,2}{} & \SI{8,48e-5}{} & \SI{2,19}{} & \SI{-9,38} & \SI{3,30e-3}	& 72 \\
-				\SI{37,0}{} & \SI{1,47e-4}{} & \SI{2,14}{} & \SI{-8,83} & \SI{3,22e-3}	& 77 \\
+				\textbf{Temperatur in \si{\celsius}} & \textbf{Stoßfaktor k in} &  \textbf{Reaktionsordnung n in} & \textbf{$\ln{\text{k}}$} & \textbf{$\frac{1}{\text{T}}$ in \si{\kelvin}}\\
+				\hline 
+				\SI{23,5}{} & \SI{5,13e-5}{} & \SI{2,21}{} & \SI{-9,88}{} & \SI{3,37e-3}{} \\
+				\SI{30,2}{} & \SI{8,48e-5}{} & \SI{2,19}{} & \SI{-9,38}{} & \SI{3,30e-3}{} \\
+				\SI{37,0}{} & \SI{1,47e-4}{} & \SI{2,14}{} & \SI{-8,83}{} & \SI{3,22e-3}{} \\
 				\hline	
 			\end{tabular}}}
 \end{table}
@@ -142,6 +142,258 @@
 \vspace*{-2.5mm}
 %Tabelle Ende
 \textcolor{red}{Berechnungen}
+
+\begin{figure}[h!]
+	\begin{center}
+		%\resizebox{0.8\textwidth}{!}{
+		\begin{tikzpicture}[trim axis left, trim axis right]
+		\begin{axis}[
+		axis lines = left,
+		width = 16cm,
+		height = 8cm,
+		xmin = 0,
+		xmax = 2500,
+		ymin = 0,
+		ymax = 0.0015,
+		ylabel={E(t)},
+		y label style={at={(-0.03,0.5)}},
+		xlabel={t in \si{\second}},
+		legend style={at={(0.95,0.95)},anchor=west}
+		]
+		\addplot table {E(t)_impuls_1.dat};
+		\addplot table {E(t)_impuls_2.dat};
+		\addplot table {E(t)_impuls_3.dat};
+		\legend{T=\SI{23,5}{\celsius},T=\SI{30,2}{\celsius},T=\SI{37,0}{\celsius}};
+		\end{axis}
+		\end{tikzpicture}
+		%	}Ventilkennlinie
+		\caption{E(t) Impulsmarkierung}
+		\label{dia:E(t) impuls}
+	\end{center}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[h!]
+	\begin{center}
+		\resizebox{1.0\textwidth}{!}{
+		\begin{tikzpicture}[trim axis left, trim axis right]
+		\begin{axis}[
+		axis lines = left,
+		width = 16cm,
+		height = 8cm,
+		xmin = 0,
+		xmax = 2500,
+		ymin = 0,
+		ymax = 1,
+		ylabel={F(t)},
+		y label style={at={(-0.03,0.5)}},
+		xlabel={t in \si{\second}},
+		legend style={at={(0.75,0.75)},anchor=west}
+		]
+		\addplot table {F(t)_impuls_1.dat};
+		\addplot table {F(t)_impuls_2.dat};
+		\addplot table {F(t)_impuls_3.dat};
+		\legend{T=\SI{23,5}{\celsius},T=\SI{30,2}{\celsius},T=\SI{37,0}{\celsius}};
+		\end{axis}
+		\end{tikzpicture}
+			}
+		\caption{F(t) Impulsmarkierung}
+		\label{dia:F(t) Impuls}
+	\end{center}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[h!]
+	\begin{center}
+		%\resizebox{0.8\textwidth}{!}{
+		\begin{tikzpicture}[trim axis left, trim axis right]
+		\begin{axis}[
+		axis lines = left,
+		width = 16cm,
+		height = 8cm,
+		xmin = 0,
+		xmax = 2500,
+		ymin = 0,
+		ymax = 1,
+		ylabel={F(t)},
+		y label style={at={(-0.03,0.5)}},
+		xlabel={t in \si{\second}},
+		legend style={at={(0.75,0.75)},anchor=west}
+		]
+		\addplot table {F(t)_verdrang_1.dat};
+		\addplot table {F(t)_verdrang_2.dat};
+		\addplot table {F(t)_verdrang_3.dat};
+		\legend{T=\SI{23,5}{\celsius},T=\SI{30,2}{\celsius},T=\SI{37,0}{\celsius}};
+		\end{axis}
+		\end{tikzpicture}
+		%	}Ventilkennlinie
+		\caption{F(t) Verdrängung}
+		\label{dia:F(t) verdrang}
+	\end{center}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[h!]
+	\begin{center}
+		\resizebox{1.0\textwidth}{!}{
+		\begin{tikzpicture}[trim axis left, trim axis right]
+		\begin{axis}[
+		axis lines = left,
+		width = 16cm,
+		height = 8cm,
+		xmin = 0,
+		xmax = 2500,
+		ymin = 0,
+		ymax = 0.0035,
+		ylabel={E(t)},
+		y label style={at={(-0.03,0.5)}},
+		xlabel={t in \si{\second}},
+		legend style={at={(0.75,0.75)},anchor=west}
+		]
+		\addplot table {E(t)_verdrang_1.dat};
+		\addplot table {E(t)_verdrang_2.dat};
+		\addplot table {E(t)_verdrang_3.dat};
+		\legend{T=\SI{23,5}{\celsius},T=\SI{30,2}{\celsius},T=\SI{37,0}{\celsius}};
+		\end{axis}
+		\end{tikzpicture}
+			}
+		\caption{E(t) Verdrängung}
+		\label{dia:E(t) verdrang}
+	\end{center}
+\end{figure}
+\FloatBarrier
+
+%Tabelle START
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[h!]
+	\centering
+	\caption{Berechnete Werte aus den Verweilzeiten der Impulsmarkierung}
+	\label{tab:vwz_impuls}
+	\makebox[\textwidth]{
+		\resizebox{15cm}{!}{
+			\begin{tabular}{c|c|c|c}
+				\hline
+				 & \textbf{RK1}& \textbf{RK1+RK2} &  \textbf{RK1+RK2+RK3} \\
+				\hline
+				\textbf{VWZ in \si{\minute}} & $\approx \SI{6}{}$ & $\approx \SI{10}{}$ & $\approx \SI{16}{}$ \\
+				\hline
+				\hline
+				\textbf{Varianz in} & \SI{134459}{}   & \SI{128017}{} & \SI{177191}{} \\
+				\hline
+				\hline
+				\textbf{Normierte Varianz in} & 1,05 & 0,35 & 0,20 \\
+				\hline
+				\hline
+				\textbf{Bodensteinzahl} & \SI{1,9e-2} & 4,5 & 8,9 \\
+				\hline	
+				\hline
+				\textbf{Kesselzahl} & 1,5 & 3,3 & 5,5 \\
+				\hline		
+	\end{tabular}}}
+\end{table}
+\FloatBarrier
+\vspace*{-2.5mm}
+%Tabelle Ende
+
+%Tabelle START
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[h!]
+	\centering
+	\caption{Berechnete Werte aus den Verweilzeiten der Verdrängungs}
+	\label{tab:vwz_verdrang}
+	\makebox[\textwidth]{
+		\resizebox{15cm}{!}{
+			\begin{tabular}{c|c|c|c}
+				\hline
+				& \textbf{RK1}& \textbf{RK1+RK2} &  \textbf{RK1+RK2+RK3} \\
+				\hline
+				\textbf{VWZ in \si{\minute}} & $\approx \SI{6}{}$ & $\approx \SI{16}{}$ & $\approx \SI{25}{}$ \\
+				\hline
+				\hline
+				\textbf{Varianz in} & \SI{75059}{}   & \SI{372779}{} & \SI{1165252}{} \\
+				\hline
+				\hline
+				\textbf{Normierte Varianz in} & 0,48 & 0,41 & 0,50 \\
+				\hline	
+				\hline
+				\textbf{Bodensteinzahl} & 2,7 & 3,5 & 2,6 \\
+				\hline	
+				\hline
+				\textbf{Kesselzahl} & 2,5 & 2,8 & 2,4 \\
+				\hline		
+	\end{tabular}}}
+\end{table}
+\FloatBarrier
+\vspace*{-2.5mm}
+%Tabelle Ende
+\textcolor{red}{Berechnungen + (Mittelwerte ?)}
+
+%Tabelle START
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[h!]
+	\centering
+	\caption{experimentell bestimmte Umsatzgrade}
+	\label{tab:usg_experimentell}
+	\makebox[\textwidth]{
+		\resizebox{15cm}{!}{
+			\begin{tabular}{c|c|c|c|c}
+				\hline
+				& \textbf{RK1}& \textbf{RK1+RK2} &  \textbf{RK1+RK2+RK3} & \textbf{Mittelwert}\\
+				\hline
+				\textbf{X in \si{\percent}} & $\approx \SI{49}{}$ & $\approx \SI{66}{}$ & $\approx \SI{73}{}$& $\approx \SI{63}{}$ \\
+				\hline	
+	\end{tabular}}}
+\end{table}
+\FloatBarrier
+\vspace*{-2.5mm}
+%Tabelle Ende
+
+%Tabelle START
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[h!]
+	\centering
+	\caption{analytische Umsatzgrade aus den kinetischen Kennwerten}
+	\label{tab:usg_analytisch}
+	\makebox[\textwidth]{
+		\resizebox{10cm}{!}{
+			\begin{tabular}{c|c|c|c}
+				\hline
+				& \textbf{T=\SI{23,5}{\celsius}}& \textbf{T=\SI{30,2}{\celsius}} &  \textbf{T=\SI{37,0}{\celsius}} \\
+				\hline
+				\textbf{X in \si{\percent}} & $\approx \SI{64}{}$ & $\approx \SI{72}{}$ & $\approx \SI{77}{}$ \\
+				\hline	
+	\end{tabular}}}
+\end{table}
+\FloatBarrier
+\vspace*{-2.5mm}
+%Tabelle Ende
+
+%Tabelle START
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[h!]
+	\centering
+	\caption{Ideale Umsatzgrade aus E(t) und $X_{\text{analytisch}}$}
+	\label{tab:usg_real}
+	\makebox[\textwidth]{
+		\resizebox{10cm}{!}{
+			\begin{tabular}{c|c|c|c}
+				\hline
+				& \textbf{RK1}& \textbf{RK1+RK2} &  \textbf{RK1+RK2+RK3} \\
+				\hline
+				\textbf{X in \si{\percent} bei T= \SI{23,5}{\celsius}} & $\approx \SI{50}{}$ & $\approx \SI{57}{}$ & $\approx \SI{62}{}$\\
+				\hline	
+				\textbf{X in \si{\percent} bei T= \SI{30,2}{\celsius}} & $\approx \SI{71}{}$ & $\approx \SI{75}{}$ & $\approx \SI{78}{}$\\
+				\hline	
+				\textbf{X in \si{\percent} bei T= \SI{37,0}{\celsius}} & $\approx \SI{80}{}$ & $\approx \SI{82}{}$ & $\approx \SI{84}{}$\\
+				\hline		
+	\end{tabular}}}
+\end{table}
+\FloatBarrier
+\vspace*{-2.5mm}
+%Tabelle Ende
+\textcolor{red}{Berechnungen + Graphen}
+
+
 
 \subsection{Berechnung eines kontinuierlichen Reaktors}
 \begin{itemize}
