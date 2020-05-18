@@ -12,20 +12,24 @@
 		width = 13cm,
 		height = 7cm,
 		xmin = 0,
-		xmax = 20,
+		xmax = 900,
 		ymin = 0,
-		ymax = 0.1,
+		ymax = 55,
 		%ytick = {0,2,...,14},
 		%xtick = {0,10,...,100},
-		ylabel={c in [\si{\mole\per\liter}]},
+		ylabel={c(NaOH) in [\si{\milli\mole\per\liter}]},
 		xlabel={t in [\si{\second}]},
 	%	legend style={at={(0.5,0.95)},anchor=west}
 		]
-		\addplot table {rt-M-x-replace-string.dat};
+		\addplot table {Konzentration20.dat};
+		\addplot table {Konzentration30.dat};
+		\addplot table {Konzentration40.dat};
+		
+		\legend{T=\SI{23,5}{\celsius},T=\SI{30,2}{\celsius},T=\SI{37,0}{\celsius}};
 		\end{axis}
 		\end{tikzpicture}
 		%	}Ventilkennlinie
-		\caption{Konzentration über der Zeit}
+		\caption{Konzentration von NaOH über der Zeit}
 		\label{dia:c/t}
 	\end{center}
 \end{figure}
@@ -48,11 +52,12 @@
 		ylabel={ln(r)},
 		y label style={at={(-0.03,0.5)}},
 		xlabel={ln(c)},
-		%	legend style={at={(0.5,0.95)},anchor=west}
+		legend style={at={(0.95,0.95)},anchor=west}
 		]
 		\addplot table {lnclnr20grad.dat};
 		\addplot table {lnclnr30grad.dat};
 		\addplot table {lnclnr40grad.dat};
+		\legend{T=\SI{23,5}{\celsius},T=\SI{30,2}{\celsius},T=\SI{37,0}{\celsius}};
 		\end{axis}
 		\end{tikzpicture}
 		%	}Ventilkennlinie
@@ -61,6 +66,8 @@
 	\end{center}
 \end{figure}
 \FloatBarrier
+
+\textcolor{red}{Abb. \ref{dia:lnr/lnc} Regressionsgeraden}
 
 \begin{figure}[h!]
 	\begin{center}
@@ -90,6 +97,51 @@
 	\end{center}
 \end{figure}
 \FloatBarrier
+
+\textcolor{red}{Abb. \ref{dia:lnk/(1/T)} Regressionsgerade}
+
+%Tabelle START
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[h!]
+	\centering
+	\caption{Kinetische Kennwerte}
+	\label{tab:kin_kenn}
+	\makebox[\textwidth]{
+		\resizebox{15cm}{!}{
+			\begin{tabular}{c|c|c|c|c|c}
+				\hline
+				\textbf{Temperatur in \si{\celsius}} & \textbf{Stoßfaktor k in} &  \textbf{Reaktionsordnung n in} & \textbf{$\ln{\text{k}}$} & \textbf{$\frac{1}{\text{T}}$ in \si{\kelvin}} & (\textbf{$X_{\text{analytisch}}$ in \si{\percent}})\\
+				\hline
+				\SI{23,5}{} & \SI{5,13e-5}{} & \SI{2,21}{} & \SI{-9,88} & \SI{3,37e-3}	& 64 \\
+				\SI{30,2}{} & \SI{8,48e-5}{} & \SI{2,19}{} & \SI{-9,38} & \SI{3,30e-3}	& 72 \\
+				\SI{37,0}{} & \SI{1,47e-4}{} & \SI{2,14}{} & \SI{-8,83} & \SI{3,22e-3}	& 77 \\
+				\hline	
+			\end{tabular}}}
+\end{table}
+\FloatBarrier
+\vspace*{-2.5mm}
+%Tabelle Ende
+\textcolor{red}{Berechnungen}
+%Tabelle START
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[h!]
+	\centering
+	\caption{Kinetische Konstanten}
+	\label{tab:kin_kon}
+	\makebox[\textwidth]{
+		\resizebox{4cm}{!}{
+			\begin{tabular}{c|c}
+				\hline
+				\textbf{$k_0$} & \textbf{$E_A$ in \si{\kilo \joule \per \mole}} \\
+				\hline
+				\SI{1,6e6} & \SI{59,6}{}\\				
+				\hline	
+	\end{tabular}}}
+\end{table}
+\FloatBarrier
+\vspace*{-2.5mm}
+%Tabelle Ende
+\textcolor{red}{Berechnungen}
 
 \subsection{Berechnung eines kontinuierlichen Reaktors}
 \begin{itemize}
