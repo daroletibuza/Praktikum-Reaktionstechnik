@@ -666,6 +666,31 @@ X_{\text{analytisch}} &= 1-\left[1+k(T)*(n-1)*c_{A,0}^{n-1}*t\right]^{\frac{1}{1
 \subsection{Berechnung eines kontinuierlichen Reaktors}
 \begin{itemize}
 	\item \SI{100 000}{\tonne\per\year} Natriumacetat
+	\item \SI{8000}{\tonne\per\year}
 	\item Reaktionstemperatur \SI{32}{\degreeCelsius}
 	\item Umsatzgrad $X=$ 80\%
 \end{itemize}
+Die Berechnung des Reaktorvolumens basiert hier auf dem Prinzip des \textit{upscaling}. Dabei wird angenommen dass sich die Reaktoreigenschaften bei Größenänderungen nahezu konstant bleiben. 
+
+Der Reaktor wird als ideal, kontinuierlich angenommen.
+Allgemein gilt darum:
+
+\begin{flalign}\label{gl:grundgl}
+	\frac{dn}{dt}=0&=\dot{n}_0-\dot{n}+V_R*\sum \nu_{i,j}*r_j\\
+	0&=\dot{n}_0-\dot{n}+V_R*R_i\\
+\end{flalign}
+
+\begin{flalign}
+\dot{m}=	\frac{\SI{100 000}{\tonne\per\year}}{\SI{8000}{\tonne\per\year}}&= \SI{12,5}{\tonne\per\hour}\\
+\dot{n}=\frac{\dot{m}}{M} = \frac{\SI{12500000}{\gram}}{\SI{82,03}{\gram\per\mole}}&=
+ \SI{152383,274}{\mole\per\hour}\\
+\end{flalign}
+
+\textit{Nun kann in Gleichung \ref{gl:grundgl} eingesetzt werden, wobei die für die Stoffmengenänderungsgeschwindigkeit, die experimentell bestimmte mittlere Stoffmengenänderungsgeschwindigkeit aus dem Versuch Kinetik bei \SI{30,2}{\degreeCelsius}, eingesetzt wird.}
+
+
+\begin{flalign}
+0&=\dot{n}_0-\dot{n}+V_R*R_i\\
+0&=\SI{}{\mole\per\hour}-\SI{}{\mole\per\hour}+V_R*\SI{4,403}{\mole\per\cubic\meter\per\hour}\\
+V_R&=\SI{}{\cubic\meter}
+\end{flalign}
