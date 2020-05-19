@@ -3,37 +3,73 @@
 
 %Darstellung Messungen und Kurzbeschreibung
 
-\begin{figure}[h!]
-	\begin{center}
-		%\resizebox{0.8\textwidth}{!}{
-		\begin{tikzpicture}[trim axis left, trim axis right]
-		\begin{axis}[
-		axis lines = left,
-		width = 13cm,
-		height = 7cm,
-		xmin = 0,
-		xmax = 900,
-		ymin = 0,
-		ymax = 55,
-		%ytick = {0,2,...,14},
-		%xtick = {0,10,...,100},
-		ylabel={c(NaOH) in [\si{\milli\mole\per\liter}]},
-		xlabel={t in [\si{\second}]},
-	%	legend style={at={(0.5,0.95)},anchor=west}
-		]
-		\addplot table {Konzentration20.dat};
-		\addplot table {Konzentration30.dat};
-		\addplot table {Konzentration40.dat};
-		
-		\legend{T=\SI{23,5}{\celsius},T=\SI{30,2}{\celsius},T=\SI{37,0}{\celsius}};
-		\end{axis}
-		\end{tikzpicture}
-		%	}Ventilkennlinie
-		\caption{Konzentration von NaOH über der Zeit}
-		\label{dia:c/t}
-	\end{center}
-\end{figure}
-\FloatBarrier
+Aus den gemessenen Leitfähigkeiten des Versuchs "`Kinetik"' wurde der Umsatzgrad X(t) bestimmt \mbox{(siehe Gl. \ref{gl:1})}. Die Leitfähigkeit $\lambda_\infty$ bestimmt, ist in diesem Versuch die Leitfähigkeit nach am Ende des Praktikums.
+
+\begin{flalign}
+\label{gl:1}
+	X(t) &= \frac{|\lambda_0-\lambda(t)|}{|\lambda_0-\lambda_\infty|}
+\end{flalign}
+
+Mit dem Umsatzgrad X(t) und der Ausgangskonzentration $c_0(NaOH)$ lässt sich der Konzentrationsverlauf c(t) von NaOH ermitteln \mbox{(siehe Gl. \ref{gl:2})}, wie in Abb. \ref{dia:c/t} für die drei Versuchstemperaturen dargestellt.
+\begin{flalign}
+\label{gl:2}
+c(t) &= (1-X(t))*c_0(\text{NaOH})
+\end{flalign}
+
+%\begin{figure}[h!]
+%	\begin{center}
+%		\resizebox{0.8\textwidth}{!}{
+%		\begin{tikzpicture}[trim axis left, trim axis right]
+%		\begin{axis}[
+%		axis lines = left,
+%		width = 13cm,
+%		height = 7cm,
+%		xmin = 0,
+%		xmax = 900,
+%		ymin = 0,
+%		ymax = 55,
+%		%ytick = {0,2,...,14},
+%		%xtick = {0,10,...,100},
+%		ylabel={c(NaOH) in [\si{\milli\mole\per\liter}]},
+%		xlabel={t in [\si{\second}]},
+%	%	legend style={at={(0.5,0.95)},anchor=west}
+%		]
+%		\addplot table {Konzentration20.dat};
+%		\addplot table {Konzentration30.dat};
+%		\addplot table {Konzentration40.dat};
+%		
+%		\legend{T=\SI{23,5}{\celsius},T=\SI{30,2}{\celsius},T=\SI{37,0}{\celsius}};
+%		\end{axis}
+%		\end{tikzpicture}
+%			}
+%		\caption{Konzentration von NaOH über der Zeit}
+%		\label{dia:c/t}
+%	\end{center}
+%\end{figure}
+%\FloatBarrier
+
+Aus den Stöchiometriefaktoren der zugrundeliegenden Reaktionsgleichung und dem Konzentrationsverlauf lässt sich des Weiteren die Reaktionsgeschwindigkeit $r$ bestimmen.
+
+\begin{center}
+	\ce{CH3COOCH2CH3 + NaOH -> CH3COO- + Na+ + C2H5OH}
+\end{center}
+
+Als Ausgangsstoff ergibt sich somit für die Natronlauge $\nu(NaOH)= -1$. Zusammengeführt werden diese Zusammenhänge in Gl. \ref{gl:3} mit Hilfe der Stoffmengenänderungsgeschwindigkeit $R$.
+\begin{flalign}
+\label{gl:3}
+	R_{\text{NaOH}} &= \nu(NaOH) * r \approx \frac{\Delta c(NaOH)}{\Delta t}\\
+	r				&= \nu(NaOH) * \frac{\Delta c(NaOH)}{\Delta t}
+\end{flalign}
+
+Um über die Reaktionsgeschwindigkeit den Stoßfaktor $k$ bestimmen zu können wird diese in Zusammenhang mittels Potenzansatz in Gl. \ref{gl:4} geführt.
+In Abb.\ref{dia:lnr/lnc} sind die lineare Verläufe der Messwerte unter Einbezug von Gl. \ref{gl:4} für die untersuchten Temperaturen aufgetragen.
+
+\begin{flalign}
+\label{gl:4}
+-r	&= -k*c(NaOH)^n\\
+ r	&= k*c(NaOH)^n\\
+ \ln{r} &= \ln{k} + \ln{c(NaOH)}*n
+\end{flalign}
 
 \begin{figure}[h!]
 	\begin{center}
@@ -43,12 +79,12 @@
 		axis lines = left,
 		width = 13cm,
 		height = 7cm,
-		xmin = 2.6,
+		xmin = 2.8,
 		xmax = 3.9,
 		ymin = -4.5,
 		ymax = -0.5,
 		ytick = {-4.5,-4,...,-1},
-		xtick = {2.5,2.6,...,3.9},
+		xtick = {2.8,2.9,...,3.9},
 		ylabel={ln(r)},
 		y label style={at={(-0.03,0.5)}},
 		xlabel={ln(c)},
@@ -57,17 +93,52 @@
 		\addplot table {lnclnr20grad.dat};
 		\addplot table {lnclnr30grad.dat};
 		\addplot table {lnclnr40grad.dat};
+		\addplot +[mark=none, dashed, black] {2.14*x - 8.83};
+		\addplot +[mark=none, dashed, black] {2.1925*x - 9.3751};
+		\addplot +[mark=none, dashed, black] {2.21*x - 9.88};
+	
 		\legend{T=\SI{23,5}{\celsius},T=\SI{30,2}{\celsius},T=\SI{37,0}{\celsius}};
 		\end{axis}
 		\end{tikzpicture}
 		%	}Ventilkennlinie
-		\caption{Konzentration über der Zeit}
+		\caption{Logarithmus der Reaktionsgeschwindigkeit über dem Logarithmus der Konzentration}
 		\label{dia:lnr/lnc}
 	\end{center}
 \end{figure}
 \FloatBarrier
+\vspace*{-5mm}
 
-\textcolor{red}{Abb. \ref{dia:lnr/lnc} Regressionsgeraden}
+\textbf{Regressionsgeraden $y$ und Bestimmtheitsmaß $R^2$:}
+\begin{flalign}
+	y(T=\SI{23,5}{\celsius}) &= 2,21*x - 9,88 \quad | \quad R^2 = 0,6849\\
+	y(T=\SI{32,2}{\celsius}) &= 2,19*x - 9,38 \quad | \quad R^2 = 0,9016\\
+	y(T=\SI{37,0}{\celsius}) &= 2,14*x - 8,83 \quad | \quad R^2 = 0,9179 \nonumber
+\end{flalign}
+\vspace*{-10mm}
+
+%Tabelle START
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[h!]
+	\centering
+	\caption{Kinetische Kennwerte}
+	\label{tab:kin_kenn}
+	\makebox[\textwidth]{
+		\resizebox{15cm}{!}{
+			\begin{tabular}{c|c|c|c|c}
+				\hline
+				\textbf{Temperatur in \si{\celsius}} & \textbf{$\ln{\text{k}}$} & \textbf{Stoßfaktor k in} & \textbf{$\frac{1}{\text{T}}$ in \si{\kelvin}}&  \textbf{Reaktionsordnung n in}\\
+				\hline 
+				\SI{23,5}{} & \SI{-9,88}{} & \SI{5,13e-5}{}   & \SI{3,37e-3}{}	& \SI{2,21}{} \\
+				\SI{30,2}{} & \SI{-9,38}{} & \SI{8,48e-5}{}   & \SI{3,30e-3}{} 	& \SI{2,19}{}\\
+				\SI{37,0}{} & \SI{-8,83}{} & \SI{1,47e-4}{}   &   \SI{3,22e-3}{}& \SI{2,14}{}  \\
+				\hline	
+\end{tabular}}}
+\end{table}
+\FloatBarrier
+\vspace*{-2.5mm}
+%Tabelle Ende
+
+Für die Berechnung des Stoßfaktors $k_0$ und der Aktivierungsenergie $E_A$ können die berechneten kinetischen Kennwerte Stoßfaktor $k$ und die reziproke Temperatur $\frac{1}{T}$ in einem \textsc{Arrhenius}-Diagramm dargestellt werden (siehe Abb. \ref{dia:lnk/(1/T)}).
 
 \begin{figure}[h!]
 	\begin{center}
@@ -86,42 +157,27 @@
 		ylabel={ln(k)},
 		y label style={at={(-0.03,0.5)}},
 		xlabel={1/T in [K]},
-		%	legend style={at={(0.5,0.95)},anchor=west}
+		legend style={at={(0.1,0.95)},anchor=west}
 		]
 		\addplot table {Arrhenius1.dat};
+		\addplot +[mark=none, dashed, black,domain=0.0032:0.0034] {-7170.5*x + 14.283};
+		\legend{\text{$y(x) = -7170,5*x + 14,283 \quad | \quad R^2 = 0,9989$}};
 		\end{axis}
 		\end{tikzpicture}
 		%	}Ventilkennlinie
-		\caption{Arrhenius-Diagramm}
+		\caption{\textsc{Arrhenius}-Diagramm}
 		\label{dia:lnk/(1/T)}
 	\end{center}
 \end{figure}
 \FloatBarrier
+\vspace*{-15mm}
 
-\textcolor{red}{Abb. \ref{dia:lnk/(1/T)} Regressionsgerade}
+\begin{flalign}
+	\ln k &= \ln k_0 - \frac{E_A}{R*T}\\
+	E_A	&= (\ln k_0-\ln k)*R*T
+\end{flalign}
+\vspace*{-5mm}
 
-%Tabelle START
-\renewcommand{\arraystretch}{1.2}
-\begin{table}[h!]
-	\centering
-	\caption{Kinetische Kennwerte}
-	\label{tab:kin_kenn}
-	\makebox[\textwidth]{
-		\resizebox{15cm}{!}{
-			\begin{tabular}{c|c|c|c|c}
-				\hline
-				\textbf{Temperatur in \si{\celsius}} & \textbf{Stoßfaktor k in} &  \textbf{Reaktionsordnung n in} & \textbf{$\ln{\text{k}}$} & \textbf{$\frac{1}{\text{T}}$ in \si{\kelvin}}\\
-				\hline 
-				\SI{23,5}{} & \SI{5,13e-5}{} & \SI{2,21}{} & \SI{-9,88}{} & \SI{3,37e-3}{} \\
-				\SI{30,2}{} & \SI{8,48e-5}{} & \SI{2,19}{} & \SI{-9,38}{} & \SI{3,30e-3}{} \\
-				\SI{37,0}{} & \SI{1,47e-4}{} & \SI{2,14}{} & \SI{-8,83}{} & \SI{3,22e-3}{} \\
-				\hline	
-			\end{tabular}}}
-\end{table}
-\FloatBarrier
-\vspace*{-2.5mm}
-%Tabelle Ende
-\textcolor{red}{Berechnungen}
 %Tabelle START
 \renewcommand{\arraystretch}{1.2}
 \begin{table}[h!]
@@ -129,171 +185,170 @@
 	\caption{Kinetische Konstanten}
 	\label{tab:kin_kon}
 	\makebox[\textwidth]{
-		\resizebox{4cm}{!}{
-			\begin{tabular}{c|c}
+		\resizebox{7cm}{!}{
+			\begin{tabular}{c|c|c}
 				\hline
-				\textbf{$k_0$} & \textbf{$E_A$ in \si{\kilo \joule \per \mole}} \\
+				\textbf{$\ln k_0$}&\textbf{$k_0$} & \textbf{$E_A$ in \si{\kilo \joule \per \mole}} \\
 				\hline
-				\SI{1,6e6} & \SI{59,6}{}\\				
+				\SI{14,283}{}&\SI{1,6e6} & \SI{59,6}{}\\				
 				\hline	
 	\end{tabular}}}
 \end{table}
 \FloatBarrier
 \vspace*{-2.5mm}
 %Tabelle Ende
-\textcolor{red}{Berechnungen}
 
-\begin{figure}[h!]
-	\begin{center}
-		%\resizebox{0.8\textwidth}{!}{
-		\begin{tikzpicture}[trim axis left, trim axis right]
-		\begin{axis}[
-		axis lines = left,
-		width = 16cm,
-		height = 8cm,
-		xmin = 0,
-		xmax = 2500,
-		ymin = 0,
-		ymax = 0.0015,
-		ylabel={E(t)},
-		y label style={at={(-0.03,0.5)}},
-		xlabel={t in \si{\second}},
-		legend style={at={(0.95,0.95)},anchor=west}
-		]
-		\addplot table {E(t)_impuls_1.dat};
-		\addplot table {E(t)_impuls_2.dat};
-		\addplot table {E(t)_impuls_3.dat};
-		\legend{T=\SI{23,5}{\celsius},T=\SI{30,2}{\celsius},T=\SI{37,0}{\celsius}};
-		\end{axis}
-		\end{tikzpicture}
-		%	}Ventilkennlinie
-		\caption{E(t) Impulsmarkierung}
-		\label{dia:E(t) impuls}
-	\end{center}
-\end{figure}
-\FloatBarrier
+%\begin{figure}[h!]
+%	\begin{center}
+%		%\resizebox{0.8\textwidth}{!}{
+%		\begin{tikzpicture}[trim axis left, trim axis right]
+%		\begin{axis}[
+%		axis lines = left,
+%		width = 16cm,
+%		height = 8cm,
+%		xmin = 0,
+%		xmax = 2500,
+%		ymin = 0,
+%		ymax = 0.0015,
+%		ylabel={E(t)},
+%		y label style={at={(-0.03,0.5)}},
+%		xlabel={t in \si{\second}},
+%		legend style={at={(0.95,0.95)},anchor=west}
+%		]
+%		\addplot table {E(t)_impuls_1.dat};
+%		\addplot table {E(t)_impuls_2.dat};
+%		\addplot table {E(t)_impuls_3.dat};
+%		\legend{T=\SI{23,5}{\celsius},T=\SI{30,2}{\celsius},T=\SI{37,0}{\celsius}};
+%		\end{axis}
+%		\end{tikzpicture}
+%		%	}Ventilkennlinie
+%		\caption{E(t) Impulsmarkierung}
+%		\label{dia:E(t) impuls}
+%	\end{center}
+%\end{figure}
+%\FloatBarrier
 
-\begin{figure}[h!]
-	\begin{center}
-		\resizebox{1.0\textwidth}{!}{
-		\begin{tikzpicture}[trim axis left, trim axis right]
-		\begin{axis}[
-		axis lines = left,
-		width = 16cm,
-		height = 8cm,
-		xmin = 0,
-		xmax = 2500,
-		ymin = 0,
-		ymax = 1,
-		ylabel={F(t)},
-		y label style={at={(-0.03,0.5)}},
-		xlabel={t in \si{\second}},
-		legend style={at={(0.75,0.75)},anchor=west}
-		]
-		\addplot table {F(t)_impuls_1.dat};
-		\addplot table {F(t)_impuls_2.dat};
-		\addplot table {F(t)_impuls_3.dat};
-		\legend{T=\SI{23,5}{\celsius},T=\SI{30,2}{\celsius},T=\SI{37,0}{\celsius}};
-		\end{axis}
-		\end{tikzpicture}
-			}
-		\caption{F(t) Impulsmarkierung}
-		\label{dia:F(t) Impuls}
-	\end{center}
-\end{figure}
-\FloatBarrier
+%\begin{figure}[h!]
+%	\begin{center}
+%		\resizebox{1.0\textwidth}{!}{
+%		\begin{tikzpicture}[trim axis left, trim axis right]
+%		\begin{axis}[
+%		axis lines = left,
+%		width = 16cm,
+%		height = 8cm,
+%		xmin = 0,
+%		xmax = 2500,
+%		ymin = 0,
+%		ymax = 1,
+%		ylabel={F(t)},
+%		y label style={at={(-0.03,0.5)}},
+%		xlabel={t in \si{\second}},
+%		legend style={at={(0.75,0.75)},anchor=west}
+%		]
+%		\addplot table {F(t)_impuls_1.dat};
+%		\addplot table {F(t)_impuls_2.dat};
+%		\addplot table {F(t)_impuls_3.dat};
+%		\legend{T=\SI{23,5}{\celsius},T=\SI{30,2}{\celsius},T=\SI{37,0}{\celsius}};
+%		\end{axis}
+%		\end{tikzpicture}
+%			}
+%		\caption{F(t) Impulsmarkierung}
+%		\label{dia:F(t) Impuls}
+%	\end{center}
+%\end{figure}
+%\FloatBarrier
 
-\begin{figure}[h!]
-	\begin{center}
-		%\resizebox{0.8\textwidth}{!}{
-		\begin{tikzpicture}[trim axis left, trim axis right]
-		\begin{axis}[
-		axis lines = left,
-		width = 16cm,
-		height = 8cm,
-		xmin = 0,
-		xmax = 2500,
-		ymin = 0,
-		ymax = 1,
-		ylabel={F(t)},
-		y label style={at={(-0.03,0.5)}},
-		xlabel={t in \si{\second}},
-		legend style={at={(0.75,0.75)},anchor=west}
-		]
-		\addplot table {F(t)_verdrang_1.dat};
-		\addplot table {F(t)_verdrang_2.dat};
-		\addplot table {F(t)_verdrang_3.dat};
-		\legend{T=\SI{23,5}{\celsius},T=\SI{30,2}{\celsius},T=\SI{37,0}{\celsius}};
-		\end{axis}
-		\end{tikzpicture}
-		%	}Ventilkennlinie
-		\caption{F(t) Verdrängung}
-		\label{dia:F(t) verdrang}
-	\end{center}
-\end{figure}
-\FloatBarrier
+%\begin{figure}[h!]
+%	\begin{center}
+%		%\resizebox{0.8\textwidth}{!}{
+%		\begin{tikzpicture}[trim axis left, trim axis right]
+%		\begin{axis}[
+%		axis lines = left,
+%		width = 16cm,
+%		height = 8cm,
+%		xmin = 0,
+%		xmax = 2500,
+%		ymin = 0,
+%		ymax = 1,
+%		ylabel={F(t)},
+%		y label style={at={(-0.03,0.5)}},
+%		xlabel={t in \si{\second}},
+%		legend style={at={(0.75,0.75)},anchor=west}
+%		]
+%		\addplot table {F(t)_verdrang_1.dat};
+%		\addplot table {F(t)_verdrang_2.dat};
+%		\addplot table {F(t)_verdrang_3.dat};
+%		\legend{T=\SI{23,5}{\celsius},T=\SI{30,2}{\celsius},T=\SI{37,0}{\celsius}};
+%		\end{axis}
+%		\end{tikzpicture}
+%		%	}Ventilkennlinie
+%		\caption{F(t) Verdrängung}
+%		\label{dia:F(t) verdrang}
+%	\end{center}
+%\end{figure}
+%\FloatBarrier
 
-\begin{figure}[h!]
-	\begin{center}
-		\resizebox{1.0\textwidth}{!}{
-		\begin{tikzpicture}[trim axis left, trim axis right]
-		\begin{axis}[
-		axis lines = left,
-		width = 16cm,
-		height = 8cm,
-		xmin = 0,
-		xmax = 2500,
-		ymin = 0,
-		ymax = 0.0035,
-		ylabel={E(t)},
-		y label style={at={(-0.03,0.5)}},
-		xlabel={t in \si{\second}},
-		legend style={at={(0.75,0.75)},anchor=west}
-		]
-		\addplot table {E(t)_verdrang_1.dat};
-		\addplot table {E(t)_verdrang_2.dat};
-		\addplot table {E(t)_verdrang_3.dat};
-		\legend{T=\SI{23,5}{\celsius},T=\SI{30,2}{\celsius},T=\SI{37,0}{\celsius}};
-		\end{axis}
-		\end{tikzpicture}
-			}
-		\caption{E(t) Verdrängung}
-		\label{dia:E(t) verdrang}
-	\end{center}
-\end{figure}
-\FloatBarrier
+%\begin{figure}[h!]
+%	\begin{center}
+%		\resizebox{1.0\textwidth}{!}{
+%		\begin{tikzpicture}[trim axis left, trim axis right]
+%		\begin{axis}[
+%		axis lines = left,
+%		width = 16cm,
+%		height = 8cm,
+%		xmin = 0,
+%		xmax = 2500,
+%		ymin = 0,
+%		ymax = 0.0035,
+%		ylabel={E(t)},
+%		y label style={at={(-0.03,0.5)}},
+%		xlabel={t in \si{\second}},
+%		legend style={at={(0.75,0.75)},anchor=west}
+%		]
+%		\addplot table {E(t)_verdrang_1.dat};
+%		\addplot table {E(t)_verdrang_2.dat};
+%		\addplot table {E(t)_verdrang_3.dat};
+%		\legend{T=\SI{23,5}{\celsius},T=\SI{30,2}{\celsius},T=\SI{37,0}{\celsius}};
+%		\end{axis}
+%		\end{tikzpicture}
+%			}
+%		\caption{E(t) Verdrängung}
+%		\label{dia:E(t) verdrang}
+%	\end{center}
+%\end{figure}
+%\FloatBarrier
 
-%Tabelle START
-\renewcommand{\arraystretch}{1.2}
-\begin{table}[h!]
-	\centering
-	\caption{Berechnete Werte aus den Verweilzeiten der Impulsmarkierung}
-	\label{tab:vwz_impuls}
-	\makebox[\textwidth]{
-		\resizebox{15cm}{!}{
-			\begin{tabular}{c|c|c|c}
-				\hline
-				 & \textbf{RK1}& \textbf{RK1+RK2} &  \textbf{RK1+RK2+RK3} \\
-				\hline
-				\textbf{VWZ in \si{\minute}} & $\approx \SI{6}{}$ & $\approx \SI{10}{}$ & $\approx \SI{16}{}$ \\
-				\hline
-				\hline
-				\textbf{Varianz in} & \SI{134459}{}   & \SI{128017}{} & \SI{177191}{} \\
-				\hline
-				\hline
-				\textbf{Normierte Varianz in} & 1,05 & 0,35 & 0,20 \\
-				\hline
-				\hline
-				\textbf{Bodensteinzahl} & \SI{1,9e-2} & 4,5 & 8,9 \\
-				\hline	
-				\hline
-				\textbf{Kesselzahl} & 1,5 & 3,3 & 5,5 \\
-				\hline		
-	\end{tabular}}}
-\end{table}
-\FloatBarrier
-\vspace*{-2.5mm}
-%Tabelle Ende
+%%Tabelle START
+%\renewcommand{\arraystretch}{1.2}
+%\begin{table}[h!]
+%	\centering
+%	\caption{Berechnete Werte aus den Verweilzeiten der Impulsmarkierung}
+%	\label{tab:vwz_impuls}
+%	\makebox[\textwidth]{
+%		\resizebox{15cm}{!}{
+%			\begin{tabular}{c|c|c|c}
+%				\hline
+%				 & \textbf{RK1}& \textbf{RK1+RK2} &  \textbf{RK1+RK2+RK3} \\
+%				\hline
+%				\textbf{VWZ in \si{\minute}} & $\approx \SI{6}{}$ & $\approx \SI{10}{}$ & $\approx \SI{16}{}$ \\
+%				\hline
+%				\hline
+%				\textbf{Varianz in} & \SI{134459}{}   & \SI{128017}{} & \SI{177191}{} \\
+%				\hline
+%				\hline
+%				\textbf{Normierte Varianz in} & 1,05 & 0,35 & 0,20 \\
+%				\hline
+%				\hline
+%				\textbf{Bodensteinzahl} & \SI{1,9e-2} & 4,5 & 8,9 \\
+%				\hline	
+%				\hline
+%				\textbf{Kesselzahl} & 1,5 & 3,3 & 5,5 \\
+%				\hline		
+%	\end{tabular}}}
+%\end{table}
+%\FloatBarrier
+%\vspace*{-2.5mm}
+%%Tabelle Ende
 
 %Tabelle START
 \renewcommand{\arraystretch}{1.2}
