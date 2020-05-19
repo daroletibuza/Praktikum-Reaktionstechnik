@@ -2,7 +2,8 @@
 \label{sec:auswertung}
 
 %Darstellung Messungen und Kurzbeschreibung
-
+\subsection{Kinetik}
+\label{subsec:kinetik}
 Aus den gemessenen Leitfähigkeiten des Versuchs "`Kinetik"' wurde der Umsatzgrad X(t) bestimmt \mbox{(siehe Gl. \ref{gl:1})}. Die Leitfähigkeit $\lambda_\infty$ bestimmt, ist in diesem Versuch die Leitfähigkeit nach am Ende des Praktikums.
 
 \begin{flalign}
@@ -198,6 +199,22 @@ Für die Berechnung des Stoßfaktors $k_0$ und der Aktivierungsenergie $E_A$ kö
 \vspace*{-2.5mm}
 %Tabelle Ende
 
+\subsection{Verweilzeit}
+\label{subsec:verweilzeit}
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+
+\textbf{Berechnung von E(t) bei der Impulsmarkierung:}
+\begin{flalign}
+	E(t_m) &= \frac{c(t_m)}{\int_{0}^{\infty} c(t) \diff{t}} \approx \frac{c(t_m)}{\left(\frac{c_0}{2}+c_1+...+c_{L-1}+\frac{c_L}{2}\right)*\Delta t}
+\end{flalign}
+
+\textbf{Berechnung von F(t) bei der Impulsmarkierung:}
+\begin{flalign}
+F(t_m) &= \int_{t_0}^{t_m} E(t) \diff{t} \approx \left(\frac{E(t)_0}{2}+c_1+...+c_{m-1}+\frac{c_m}{2}\right)*\Delta t
+\end{flalign}
+
 %\begin{figure}[h!]
 %	\begin{center}
 %		%\resizebox{0.8\textwidth}{!}{
@@ -227,7 +244,7 @@ Für die Berechnung des Stoßfaktors $k_0$ und der Aktivierungsenergie $E_A$ kö
 %	\end{center}
 %\end{figure}
 %\FloatBarrier
-
+%
 %\begin{figure}[h!]
 %	\begin{center}
 %		\resizebox{1.0\textwidth}{!}{
@@ -258,6 +275,38 @@ Für die Berechnung des Stoßfaktors $k_0$ und der Aktivierungsenergie $E_A$ kö
 %\end{figure}
 %\FloatBarrier
 
+\textbf{Berechnung von F(t) bei der Verdrängungsmarkierung:}
+\begin{flalign}
+F(t_m) &= \frac{c(t_m)}{c_0}
+\end{flalign}
+
+\textbf{Berechnung von E(t) bei der Verdrängungsmarkierung:}
+\begin{flalign}
+E(t_m) &= \frac{\diff F(t_m)}{\diff t} \approx \frac{F(t_{m+1})-F(t_{m-1})}{t_{m+1}-t_{m-1}} \approx \frac{F(t_{m+1})-F(t_{m-1})}{2*\Delta t}
+\end{flalign}
+
+\newpage
+
+\textbf{Berechnung der Verweilzeit $\bar{t}$ bzw. $\tau$}
+\begin{flalign}
+\tau &\approx \left[\frac{t_0*E_0}{2}+t_1*E_1+...+t_{L-1}*E_{L-1}+\frac{t_L*E_L}{2}\right]*\Delta t
+\end{flalign}
+\textbf{Berechnung der Varianz $\sigma^2$}
+\begin{flalign}
+\sigma^2 &\approx \left[\frac{t_0^2*E_0}{2}+t_1^2*E_1+...+t_{L-1}^2*E_{L-1}+\frac{t_L^2*E_L}{2}\right]*\Delta t-(\tau)^2
+\end{flalign}
+\textbf{Berechnung der genormten Varianz $\sigma_\Theta^2$}
+\begin{flalign}
+\sigma_\Theta^2 &= \frac{\sigma^2}{\tau^2}
+\end{flalign}
+\textbf{Berechnung der Bodensteinzahl $Bo$}\\
+Startwert: $Bo = \frac{2}{\sigma_\Theta^2}$
+\begin{flalign}
+	Bo &= \frac{2}{\sigma_\Theta^2+\frac{2}{Bo^2}*\left(1- \mathrm{e}^{-Bo}\right)}
+\end{flalign}
+\textit{{\small Iterativ ermittelt über Excel VBA Makro mit einer Abweichung von $10^{-5}$ zur vorherigen Bodensteinzahl.}}
+
+
 %\begin{figure}[h!]
 %	\begin{center}
 %		%\resizebox{0.8\textwidth}{!}{
@@ -287,7 +336,7 @@ Für die Berechnung des Stoßfaktors $k_0$ und der Aktivierungsenergie $E_A$ kö
 %	\end{center}
 %\end{figure}
 %\FloatBarrier
-
+%
 %\begin{figure}[h!]
 %	\begin{center}
 %		\resizebox{1.0\textwidth}{!}{
@@ -318,37 +367,37 @@ Für die Berechnung des Stoßfaktors $k_0$ und der Aktivierungsenergie $E_A$ kö
 %\end{figure}
 %\FloatBarrier
 
-%%Tabelle START
-%\renewcommand{\arraystretch}{1.2}
-%\begin{table}[h!]
-%	\centering
-%	\caption{Berechnete Werte aus den Verweilzeiten der Impulsmarkierung}
-%	\label{tab:vwz_impuls}
-%	\makebox[\textwidth]{
-%		\resizebox{15cm}{!}{
-%			\begin{tabular}{c|c|c|c}
-%				\hline
-%				 & \textbf{RK1}& \textbf{RK1+RK2} &  \textbf{RK1+RK2+RK3} \\
-%				\hline
-%				\textbf{VWZ in \si{\minute}} & $\approx \SI{6}{}$ & $\approx \SI{10}{}$ & $\approx \SI{16}{}$ \\
-%				\hline
-%				\hline
-%				\textbf{Varianz in} & \SI{134459}{}   & \SI{128017}{} & \SI{177191}{} \\
-%				\hline
-%				\hline
-%				\textbf{Normierte Varianz in} & 1,05 & 0,35 & 0,20 \\
-%				\hline
-%				\hline
-%				\textbf{Bodensteinzahl} & \SI{1,9e-2} & 4,5 & 8,9 \\
-%				\hline	
-%				\hline
-%				\textbf{Kesselzahl} & 1,5 & 3,3 & 5,5 \\
-%				\hline		
-%	\end{tabular}}}
-%\end{table}
-%\FloatBarrier
-%\vspace*{-2.5mm}
-%%Tabelle Ende
+%Tabelle START
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[h!]
+	\centering
+	\caption{Berechnete Werte aus den Verweilzeiten der Impulsmarkierung}
+	\label{tab:vwz_impuls}
+	\makebox[\textwidth]{
+		\resizebox{15cm}{!}{
+			\begin{tabular}{c|c|c|c}
+				\hline
+				 & \textbf{RK1}& \textbf{RK1+RK2} &  \textbf{RK1+RK2+RK3} \\
+				\hline
+				\textbf{VWZ in \si{\minute}} & $\approx \SI{6}{}$ & $\approx \SI{10}{}$ & $\approx \SI{16}{}$ \\
+				\hline
+				\hline
+				\textbf{Varianz in} & \SI{134459}{}   & \SI{128017}{} & \SI{177191}{} \\
+				\hline
+				\hline
+				\textbf{Normierte Varianz in} & 1,05 & 0,35 & 0,20 \\
+				\hline
+				\hline
+				\textbf{Bodensteinzahl} & \SI{1,9e-2} & 4,5 & 8,9 \\
+				\hline	
+				\hline
+				\textbf{Kesselzahl} & 1,5 & 3,3 & 5,5 \\
+				\hline		
+	\end{tabular}}}
+\end{table}
+\FloatBarrier
+\vspace*{-2.5mm}
+%Tabelle Ende
 
 %Tabelle START
 \renewcommand{\arraystretch}{1.2}
@@ -381,8 +430,10 @@ Für die Berechnung des Stoßfaktors $k_0$ und der Aktivierungsenergie $E_A$ kö
 \FloatBarrier
 \vspace*{-2.5mm}
 %Tabelle Ende
-\textcolor{red}{Berechnungen + (Mittelwerte ?)}
+\textcolor{red}{(Mittelwerte ?)}
 
+\subsection{Umsatzgrad}
+\label{subsec: umsatzgrad}
 %Tabelle START
 \renewcommand{\arraystretch}{1.2}
 \begin{table}[h!]
