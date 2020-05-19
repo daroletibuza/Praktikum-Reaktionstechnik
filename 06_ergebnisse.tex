@@ -434,6 +434,14 @@ Startwert: $Bo = \frac{2}{\sigma_\Theta^2}$
 
 \subsection{Umsatzgrad}
 \label{subsec: umsatzgrad}
+
+\textbf{Berechnung der experimentell bestimmten Umsatzgrade:}
+\begin{flalign}
+%\label{gl:}
+X_{\text{experimentell}} &= \frac{|\lambda_0-\lambda|}{|\lambda_0-\lambda_\infty|}
+\end{flalign}
+\vspace*{-10mm}
+
 %Tabelle START
 \renewcommand{\arraystretch}{1.2}
 \begin{table}[h!]
@@ -454,6 +462,14 @@ Startwert: $Bo = \frac{2}{\sigma_\Theta^2}$
 \vspace*{-2.5mm}
 %Tabelle Ende
 
+\textbf{Berechnung der analytisch bestimmten Umsatzgrade aus den kinetischen Kennwerten:}
+\begin{flalign}
+%\label{}
+X_{\text{analytisch}} &= 1-\left[1+k(T)*(n-1)*c_{A,0}^{n-1}*t\right]^{\frac{1}{1-n}}
+\end{flalign}
+\vspace*{-10mm}
+
+
 %Tabelle START
 \renewcommand{\arraystretch}{1.2}
 \begin{table}[h!]
@@ -471,14 +487,20 @@ Startwert: $Bo = \frac{2}{\sigma_\Theta^2}$
 	\end{tabular}}}
 \end{table}
 \FloatBarrier
-\vspace*{-2.5mm}
 %Tabelle Ende
+
+\textbf{Berechnung der mittleren Umsatzgrade aus E(t) der Impulsmarkierung und $X(t)_{\text{analytisch}}$ (Inkrementmethode)}
+\begin{flalign}
+%\label{}
+	\bar{X} &= \int_{0}^{\infty} E(t)*X_{\text{analytisch}}(t) \diff t \approx (E_1*X_1+...+E_L*X_L)*\Delta t
+\end{flalign}
+\vspace*{-10mm}
 
 %Tabelle START
 \renewcommand{\arraystretch}{1.2}
 \begin{table}[h!]
 	\centering
-	\caption{Ideale Umsatzgrade aus E(t) und $X_{\text{analytisch}}$}
+	\caption{Mittlere Umsatzgrade aus E(t) der Impulsmarkierung und $X(t)_{\text{analytisch}}$ (Inkrementmethode)}
 	\label{tab:usg_real}
 	\makebox[\textwidth]{
 		\resizebox{13cm}{!}{
@@ -486,19 +508,50 @@ Startwert: $Bo = \frac{2}{\sigma_\Theta^2}$
 				\hline
 				& \textbf{RK1}& \textbf{RK1+RK2} &  \textbf{RK1+RK2+RK3} \\
 				\hline
-				\textbf{X in \si{\percent} bei T= \SI{23,5}{\celsius}} & $\approx \SI{50}{}$ & $\approx \SI{57}{}$ & $\approx \SI{62}{}$\\
+				\textbf{X in \si{\percent} bei T= \SI{23,5}{\celsius}} & $\approx \SI{52}{}$ & $\approx \SI{69}{}$ & $\approx \SI{79}{}$\\
 				\hline	
-				\textbf{X in \si{\percent} bei T= \SI{30,2}{\celsius}} & $\approx \SI{71}{}$ & $\approx \SI{75}{}$ & $\approx \SI{78}{}$\\
+				\textbf{X in \si{\percent} bei T= \SI{30,2}{\celsius}} & $\approx \SI{60}{}$ & $\approx \SI{77}{}$ & $\approx \SI{89}{}$\\
 				\hline	
-				\textbf{X in \si{\percent} bei T= \SI{37,0}{\celsius}} & $\approx \SI{80}{}$ & $\approx \SI{82}{}$ & $\approx \SI{84}{}$\\
+				\textbf{X in \si{\percent} bei T= \SI{37,0}{\celsius}} & $\approx \SI{67}{}$ & $\approx \SI{82}{}$ & $\approx \SI{89}{}$\\
+				\hline		
+	\end{tabular}}}
+\end{table}
+\FloatBarrier
+%Tabelle Ende
+
+\textbf{Bestimmung der idealen Umsatzgrade aus E(t) der Impulsmarkierung und $X(t)_{\text{analytisch}}$ (Solver):}
+\begin{flalign}
+	r_a &= X*\frac{c_0}{\tau} \\
+	r_b&= k*c_{A,0}^n*(1-X)^n\\
+	r_a&=r_b\\
+	X*\frac{c_0}{\tau} &= k*c_{A,0}^n*(1-X)^n
+\end{flalign}
+\textit{Methode des kleinsten Quadrates: gesucht ist Min$[\bar{x}^2=(|ra-rb|)^2]$}
+
+
+%Tabelle START
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[h!]
+	\centering
+	\caption{Ideale Umsatzgrade aus E(t) der Impulsmarkierung und $X(t)_{\text{analytisch}}$ (Solver)}
+	\label{tab:usg_ideal}
+	\makebox[\textwidth]{
+		\resizebox{13cm}{!}{
+			\begin{tabular}{c|c|c|c}
+				\hline
+				& \textbf{RK1}& \textbf{RK1+RK2} &  \textbf{RK1+RK2+RK3} \\
+				\hline
+				\textbf{X in \si{\percent} bei T= \SI{23,5}{\celsius}} & $\approx \SI{50}{}$ & $\approx \SI{71}{}$ & $\approx \SI{80}{}$\\
+				\hline	
+				\textbf{X in \si{\percent} bei T= \SI{30,2}{\celsius}} & $\approx \SI{57}{}$ & $\approx \SI{75}{}$ & $\approx \SI{82}{}$\\
+				\hline	
+				\textbf{X in \si{\percent} bei T= \SI{37,0}{\celsius}} & $\approx \SI{62}{}$ & $\approx \SI{78}{}$ & $\approx \SI{84}{}$\\
 				\hline		
 	\end{tabular}}}
 \end{table}
 \FloatBarrier
 \vspace*{-2.5mm}
 %Tabelle Ende
-
-\textcolor{red}{Berechnungen}
 
 
 \begin{figure}[h!]
@@ -529,7 +582,7 @@ Startwert: $Bo = \frac{2}{\sigma_\Theta^2}$
 			\end{axis}
 			\end{tikzpicture}
 		}
-		\caption{T=\SI{23,5}{\celsius}}
+		\caption{Grafische Bestimmung der idealen Umsatzgrade bei T=\SI{23,5}{\celsius}}
 		\label{dia:r20}
 	\end{center}
 \end{figure}
@@ -564,7 +617,7 @@ Startwert: $Bo = \frac{2}{\sigma_\Theta^2}$
 			\end{axis}
 			\end{tikzpicture}
 		}
-		\caption{T=\SI{30,2}{\celsius}}
+		\caption{Grafische Bestimmung der idealen Umsatzgrade bei T=\SI{30,2}{\celsius}}
 		\label{dia:r30}
 	\end{center}
 \end{figure}
@@ -599,7 +652,7 @@ Startwert: $Bo = \frac{2}{\sigma_\Theta^2}$
 			\end{axis}
 			\end{tikzpicture}
 		}
-		\caption{T=\SI{37,0}{\celsius}}
+		\caption{Grafische Bestimmung der idealen Umsatzgrade bei T=\SI{37,0}{\celsius}}
 		\label{dia:r40}
 	\end{center}
 \end{figure}
