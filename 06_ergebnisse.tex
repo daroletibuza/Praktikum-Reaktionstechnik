@@ -375,7 +375,7 @@
 	\caption{Ideale Umsatzgrade aus E(t) und $X_{\text{analytisch}}$}
 	\label{tab:usg_real}
 	\makebox[\textwidth]{
-		\resizebox{10cm}{!}{
+		\resizebox{13cm}{!}{
 			\begin{tabular}{c|c|c|c}
 				\hline
 				& \textbf{RK1}& \textbf{RK1+RK2} &  \textbf{RK1+RK2+RK3} \\
@@ -391,7 +391,116 @@
 \FloatBarrier
 \vspace*{-2.5mm}
 %Tabelle Ende
-\textcolor{red}{Berechnungen + Graphen}
+
+\textcolor{red}{Berechnungen}
+
+
+\begin{figure}[h!]
+	\begin{center}
+		\resizebox{0.90\textwidth}{!}{
+			\begin{tikzpicture}[trim axis left, trim axis right]
+			\begin{axis}[
+			axis lines = left,
+			width = 16cm,
+			height = 6.5cm,
+			xmin = 0.4,
+			xmax = 1.,
+			ymin = 0,
+			ymax = 0.12,
+			ylabel={r(T=\SI{23,5}{\celsius})},
+			y label style={at={(-0.03,0.5)}},
+			xlabel={Umsatzgrad X},
+			legend style={at={(0.85,0.75)},anchor=west}
+			]
+			\addplot table {r20.dat};
+			\addplot table {r rk1.dat};
+			\addplot table {x20 rk1 rk2.dat};
+			\addplot table {x20 rk1 rk2 rk3.dat};
+			\addplot +[mark=none, dashed, black] coordinates {(0.497491049, 0) (0.497491049, 0.25)};
+			\addplot +[mark=none, dashed, black] coordinates {(0.708500151, 0) (0.708500151, 0.25)};
+			\addplot +[mark=none, dashed, black] coordinates {(0.801926384, 0) (0.801926384, 0.25)};
+			\legend{RK1,RK2+RK2,RK1+RK2+RK3};
+			\end{axis}
+			\end{tikzpicture}
+		}
+		\caption{T=\SI{23,5}{\celsius}}
+		\label{dia:r20}
+	\end{center}
+\end{figure}
+\FloatBarrier
+\vspace*{-10mm}
+
+\begin{figure}[h!]
+	\begin{center}
+		\resizebox{0.90\textwidth}{!}{
+			\begin{tikzpicture}[trim axis left, trim axis right]
+			\begin{axis}[
+			axis lines = left,
+			width = 16cm,
+			height = 6.5cm,
+			xmin = 0.4,
+			xmax = 1.,
+			ymin = 0,
+			ymax = 0.2,
+			ylabel={r(T=\SI{30,2}{\celsius})},
+			y label style={at={(-0.03,0.5)}},
+			xlabel={Umsatzgrad X},
+			legend style={at={(0.85,0.75)},anchor=west}
+			]
+			\addplot table {r30.dat};
+			\addplot table {r rk1.dat};
+			\addplot table {x30 rk1 rk2.dat};
+			\addplot table {x30 rk1 rk2 rk3.dat};
+			\addplot +[mark=none, dashed, black] coordinates {(0.566893083, 0) (0.566893083, 0.25)};
+			\addplot +[mark=none, dashed, black] coordinates {(0.745913745, 0) (0.745913745, 0.25)};
+			\addplot +[mark=none, dashed, black] coordinates {(0.823956571, 0) (0.823956571, 0.25)};
+			\legend{RK1,RK2+RK2,RK1+RK2+RK3};
+			\end{axis}
+			\end{tikzpicture}
+		}
+		\caption{T=\SI{30,2}{\celsius}}
+		\label{dia:r30}
+	\end{center}
+\end{figure}
+\FloatBarrier
+\vspace*{-5mm}
+
+\begin{figure}[h!]
+	\begin{center}
+		\resizebox{0.90\textwidth}{!}{
+			\begin{tikzpicture}[trim axis left, trim axis right]
+			\begin{axis}[
+			axis lines = left,
+			width = 16cm,
+			height = 6.5cm,
+			xmin = 0.4,
+			xmax = 1.,
+			ymin = 0,
+			ymax = 0.25,
+			ylabel={r(T=\SI{37,0}{\celsius})},
+			y label style={at={(-0.03,0.5)}},
+			xlabel={Umsatzgrad X},
+			legend style={at={(0.85,0.75)},anchor=west}
+			]
+			\addplot table {r40.dat};
+			\addplot table {r rk1.dat};
+			\addplot table {x40 rk1 rk2.dat};
+			\addplot table {x40 rk1 rk2 rk3.dat};
+			\addplot +[mark=none, dashed, black] coordinates {(0.620463586, 0) (0.620463586, 0.25)};
+			\addplot +[mark=none, dashed, black] coordinates {(0.775, 0) (0.775, 0.25)};
+			\addplot +[mark=none, dashed, black] coordinates {(0.84426, 0) (0.84426, 0.25)};
+			\legend{RK1,RK2+RK2,RK1+RK2+RK3};
+			\end{axis}
+			\end{tikzpicture}
+		}
+		\caption{T=\SI{37,0}{\celsius}}
+		\label{dia:r40}
+	\end{center}
+\end{figure}
+\FloatBarrier
+\vspace*{-2.5mm}
+
+\pagebreak
 
 
 
