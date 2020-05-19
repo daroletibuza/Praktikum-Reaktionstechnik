@@ -4,14 +4,14 @@
 %Darstellung Messungen und Kurzbeschreibung
 \subsection{Kinetik}
 \label{subsec:kinetik}
-Aus den gemessenen Leitfähigkeiten des Versuchs "`Kinetik"' wurde der Umsatzgrad X(t) bestimmt \mbox{(siehe Gl. \ref{gl:1})}. Die Leitfähigkeit $\lambda_\infty$ bestimmt, ist in diesem Versuch die Leitfähigkeit nach am Ende des Praktikums.
+Aus den gemessenen Leitfähigkeiten des Versuchs "`Kinetik"' wurde der Umsatzgrad X(t) bestimmt \mbox{(siehe Gl. \ref{gl:1})}. Die Leitfähigkeit $\lambda_\infty$ wurde zum Ende des Praktikums, nach vollständig abgelaufener Reaktion gemessen.
 
 \begin{flalign}
 \label{gl:1}
 	X(t) &= \frac{|\lambda_0-\lambda(t)|}{|\lambda_0-\lambda_\infty|}
 \end{flalign}
 
-Mit dem Umsatzgrad X(t) und der Ausgangskonzentration $c_0(NaOH)$ lässt sich der Konzentrationsverlauf c(t) von NaOH ermitteln \mbox{(siehe Gl. \ref{gl:2})}, wie in Abb. \ref{dia:c/t} für die drei Versuchstemperaturen dargestellt.
+Mit dem Umsatzgrad X(t) und der Ausgangskonzentration $c_0(NaOH)$ lässt sich der Konzentrationsverlauf c(t) von NaOH ermitteln \mbox{(siehe Gl. \ref{gl:2})} und wie in Abb. \ref{dia:c/t} für die drei Versuchstemperaturen darstellen.
 \begin{flalign}
 \label{gl:2}
 c(t) &= (1-X(t))*c_0(\text{NaOH})
@@ -55,7 +55,7 @@ Aus den Stöchiometriefaktoren der zugrundeliegenden Reaktionsgleichung und dem 
 	\ce{CH3COOCH2CH3 + NaOH -> CH3COO- + Na+ + C2H5OH}
 \end{center}
 
-Für die Natronlauge als Edukt ergibt sich somit ein Stoechiometriekoeffizient von $\nu(NaOH)= -1$. Kombiniert werden diese Zusammenhänge in Gl. \ref{gl:3} mit Hilfe der Stoffmengenänderungsgeschwindigkeit $R$.
+Für die Natronlauge als Edukt ergibt sich somit ein Stöchiometriekoeffizient von $\nu(NaOH)= -1$. Kombiniert werden diese Zusammenhänge in Gl. \ref{gl:3} mit Hilfe der Stoffmengenänderungsgeschwindigkeit $R$.
 \begin{flalign}
 \label{gl:3}
 	R_{\text{NaOH}} &= \nu(NaOH) * r \approx \frac{\Delta c(NaOH)}{\Delta t}\\
@@ -670,27 +670,42 @@ X_{\text{analytisch}} &= 1-\left[1+k(T)*(n-1)*c_{A,0}^{n-1}*t\right]^{\frac{1}{1
 	\item Reaktionstemperatur \SI{32}{\degreeCelsius}
 	\item Umsatzgrad $X=$ 80\%
 \end{itemize}
-Die Berechnung des Reaktorvolumens basiert hier auf dem Prinzip des \textit{upscaling}. Dabei wird angenommen dass sich die Reaktoreigenschaften bei Größenänderungen nahezu konstant bleiben. 
 
-Der Reaktor wird als ideal, kontinuierlich angenommen.
-Allgemein gilt darum:
-
-\begin{flalign}\label{gl:grundgl}
-	\frac{dn}{dt}=0&=\dot{n}_0-\dot{n}+V_R*\sum \nu_{i,j}*r_j\\
-	0&=\dot{n}_0-\dot{n}+V_R*R_i\\
-\end{flalign}
-
-\begin{flalign}
-\dot{m}=	\frac{\SI{100 000}{\tonne\per\year}}{\SI{8000}{\tonne\per\year}}&= \SI{12,5}{\tonne\per\hour}\\
-\dot{n}=\frac{\dot{m}}{M} = \frac{\SI{12500000}{\gram}}{\SI{82,03}{\gram\per\mole}}&=
- \SI{152383,274}{\mole\per\hour}\\
-\end{flalign}
-
-\textit{Nun kann in Gleichung \ref{gl:grundgl} eingesetzt werden, wobei die für die Stoffmengenänderungsgeschwindigkeit, die experimentell bestimmte mittlere Stoffmengenänderungsgeschwindigkeit aus dem Versuch Kinetik bei \SI{30,2}{\degreeCelsius}, eingesetzt wird.}
 
 
 \begin{flalign}
-0&=\dot{n}_0-\dot{n}+V_R*R_i\\
-0&=\SI{}{\mole\per\hour}-\SI{}{\mole\per\hour}+V_R*\SI{4,403}{\mole\per\cubic\meter\per\hour}\\
-V_R&=\SI{}{\cubic\meter}
+\dot{m}=	\frac{\SI{100 000}{\tonne\per\year}}{\SI{8000}{\tonne\per\year}}&= \SI{12,5}{\tonne\per\hour} =3472,2\si{\gram\per\second}\\
+\dot{n}=\frac{\dot{m}}{M} = \frac{\SI{3472,2}{\gram\per\second}}{\SI{82,03}{\gram\per\mole}}&=
+ \SI{42,34}{\mole\per\second}\\
 \end{flalign}
+
+\begin{flalign}
+	\dot{n}_\omega(NaAc)&=	\dot{n}_\alpha(NaOH)*X\\
+	\dot{n}_\alpha(NaOH)&= \frac{\dot{n}_\omega(NaAc)}{X}\\
+	&=\frac{\SI{42,34}{\mole\per\second}}{0,8}= \SI{52,93}{\mole\per\second}
+\end{flalign}
+
+\begin{flalign}
+	k_{32\si{\degreeCelsius}}&=k_0*e^{-\frac{E_A}{R*T}}\\
+	&=1,6*10^6*e^{-\frac{59,6\si{\joule\per\mole}*10^3}{\SI{8,314}{\joule\per\mole\per\kelvin}*\SI{305}{\kelvin}}}\\
+	&=9,96*10^{-5}\si{\liter\per\milli\mole\per\second}
+\end{flalign}
+\textit{Im folgenden wird die Reaktionsordnung n = 2  und eine Verweilzeit von $\tau=\SI{0,5}{\hour}$ angenommen}
+\begin{flalign}
+	X*\frac{c_0}{\tau}&=k*c_0^n*(1-X)^n\\
+	c_0&=\frac{X}{\tau*k*(1-X)^n}\\
+	&= \frac{0,8}{\SI{900}{\second}*9,96*10^{-5}\si{\cubic\meter\per\mole\per\second}*(1-0,8)^2}\\
+	&=223,115\si{\mole\per\cubic\meter}
+	\end{flalign}
+	
+	\begin{flalign}
+		\dot{V}&=\frac{\dot{n}}{c_0}
+		=\frac{\SI{53}{\mole\per\second}}{\SI{0,223}{\mole\per\liter}}\\
+		&=237,5\si{\liter\per\second}
+	\end{flalign}
+	
+	\begin{flalign}
+		\tau&=\frac{V_R}{\dot{V}}\\
+		V_R&=\tau*\dot{V}=0,2375\si{\cubic\meter\per\second}*900\si{\second}\\
+		&=\underline{\underline{213,75 \si{\cubic\meter}}}
+	\end{flalign}
