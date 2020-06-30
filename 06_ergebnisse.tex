@@ -111,7 +111,7 @@ In Abb.\ref{dia:lnr/lnc} sind die linearen Verläufe der Messwerte unter Einbezi
 
 \textbf{Regressionsgeraden $y$ und Bestimmtheitsmaß $R^2$:}
 \begin{flalign}
-	y(T=\SI{23,5}{\celsius}) &= 2,21*x - 9,88 \quad | \quad R^2 = 0,6849\\
+	y(T=\SI{23,5}{\celsius}) &= 2,21*x - 9,88 \quad | \quad R^2 = 0,8911\\
 	y(T=\SI{32,2}{\celsius}) &= 2,19*x - 9,38 \quad | \quad R^2 = 0,9016\\
 	y(T=\SI{37,0}{\celsius}) &= 2,14*x - 8,83 \quad | \quad R^2 = 0,9179 \nonumber
 \end{flalign}
@@ -227,7 +227,7 @@ F(t_m) &= \int_{t_0}^{t_m} E(t) \diff{t} \approx \left(\frac{E(t)_0}{2}+c_1+...+
 		xmax = 2500,
 		ymin = 0,
 		ymax = 0.0015,
-		ylabel={E(t)},
+		ylabel={E(t) in \si{\per \second}},
 		y label style={at={(-0.03,0.5)}},
 		xlabel={t in \si{\second}},
 		legend style={at={(0.95,0.95)},anchor=west}
@@ -235,7 +235,7 @@ F(t_m) &= \int_{t_0}^{t_m} E(t) \diff{t} \approx \left(\frac{E(t)_0}{2}+c_1+...+
 		\addplot table {E(t)_impuls_1.dat};
 		\addplot table {E(t)_impuls_2.dat};
 		\addplot table {E(t)_impuls_3.dat};
-		\legend{T=\SI{23,5}{\celsius},T=\SI{30,2}{\celsius},T=\SI{37,0}{\celsius}};
+		\legend{RK1,RK1+2,RK1+2+3};
 		\end{axis}
 		\end{tikzpicture}
 		%	}Ventilkennlinie
@@ -265,7 +265,7 @@ F(t_m) &= \int_{t_0}^{t_m} E(t) \diff{t} \approx \left(\frac{E(t)_0}{2}+c_1+...+
 		\addplot table {F(t)_impuls_1.dat};
 		\addplot table {F(t)_impuls_2.dat};
 		\addplot table {F(t)_impuls_3.dat};
-		\legend{T=\SI{23,5}{\celsius},T=\SI{30,2}{\celsius},T=\SI{37,0}{\celsius}};
+		\legend{RK1,RK1+2,RK1+2+3};
 		\end{axis}
 		\end{tikzpicture}
 			}
@@ -304,8 +304,12 @@ Startwert: $Bo = \frac{2}{\sigma_\Theta^2}$
 \begin{flalign}
 	Bo &= \frac{2}{\sigma_\Theta^2+\frac{2}{Bo^2}*\left(1- \mathrm{e}^{-Bo}\right)}
 \end{flalign}
-\textit{{\small Iterativ ermittelt über Excel VBA Makro mit einer Abweichung von $10^{-5}$ zur vorherigen Bodensteinzahl.}}
+\textit{{\small Iterativ ermittelt über Excel VBA Makro mit einer Abweichung von $10^{-5}$ zur vorherigen Bodensteinzahl.}}\\
 
+\textbf{Berechnung der Kesselzahl $K$}\\
+\begin{flalign}
+	K=1+\frac{1}{2}*\sqrt{{Bo}^2+1}
+\end{flalign}
 
 \begin{figure}[h!]
 	\begin{center}
@@ -327,7 +331,7 @@ Startwert: $Bo = \frac{2}{\sigma_\Theta^2}$
 		\addplot table {F(t)_verdrang_1.dat};
 		\addplot table {F(t)_verdrang_2.dat};
 		\addplot table {F(t)_verdrang_3.dat};
-		\legend{T=\SI{23,5}{\celsius},T=\SI{30,2}{\celsius},T=\SI{37,0}{\celsius}};
+		\legend{RK1,RK1+2,RK1+2+3};
 		\end{axis}
 		\end{tikzpicture}
 		%	}Ventilkennlinie
@@ -357,7 +361,7 @@ Startwert: $Bo = \frac{2}{\sigma_\Theta^2}$
 		\addplot table {E(t)_verdrang_1.dat};
 		\addplot table {E(t)_verdrang_2.dat};
 		\addplot table {E(t)_verdrang_3.dat};
-		\legend{T=\SI{23,5}{\celsius},T=\SI{30,2}{\celsius},T=\SI{37,0}{\celsius}};
+		\legend{RK1,RK1+2,RK1+2+3};
 		\end{axis}
 		\end{tikzpicture}
 			}
@@ -379,10 +383,10 @@ Startwert: $Bo = \frac{2}{\sigma_\Theta^2}$
 				\hline
 				 & \textbf{RK1}& \textbf{RK1+RK2} &  \textbf{RK1+RK2+RK3} \\
 				\hline
-				\textbf{VWZ in \si{\minute}} & $\approx \SI{6}{}$ & $\approx \SI{10}{}$ & $\approx \SI{16}{}$ \\
+				\textbf{VWZ in \si{\second}} & 358 & 605 & 944 \\
 				\hline
 				\hline
-				\textbf{Varianz in \si{\raiseto{2} \min}} & \SI{134459}{}   & \SI{128017}{} & \SI{177191}{} \\
+				\textbf{Varianz in \si{\raiseto{2} \second}} & \SI{134459}{}   & \SI{128017}{} & \SI{177191}{} \\
 				\hline
 				\hline
 				\textbf{Normierte Varianz} & 1,05 & 0,35 & 0,20 \\
@@ -411,10 +415,10 @@ Startwert: $Bo = \frac{2}{\sigma_\Theta^2}$
 				\hline
 				& \textbf{RK1}& \textbf{RK1+RK2} &  \textbf{RK1+RK2+RK3} \\
 				\hline
-				\textbf{VWZ in \si{\minute}} & $\approx \SI{6}{}$ & $\approx \SI{16}{}$ & $\approx \SI{25}{}$ \\
+				\textbf{VWZ in \si{\second}} & 394 & 951 & 1529 \\
 				\hline
 				\hline
-				\textbf{Varianz in \si{\raiseto{2} \min}} & \SI{75059}{}   & \SI{372779}{} & \SI{1165252}{} \\
+				\textbf{Varianz in \si{\raiseto{2} \second}} & \SI{75059}{}   & \SI{372779}{} & \SI{1165252}{} \\
 				\hline
 				\hline
 				\textbf{Normierte Varianz} & 0,48 & 0,41 & 0,50 \\
@@ -686,10 +690,10 @@ X_{\text{analytisch}} &= 1-\left[1+k(T)*(n-1)*c_{A,0}^{n-1}*t\right]^{\frac{1}{1
 
 \begin{flalign}
 	k_{32\si{\degreeCelsius}}&=k_0*e^{-\frac{E_A}{R*T}}\\
-	&=1,6*10^6*e^{-\frac{59,6\si{\joule\per\mole}*10^3}{\SI{8,314}{\joule\per\mole\per\kelvin}*\SI{305}{\kelvin}}}\\
+	&=1,6*10^6*e^{-\frac{59,6\si{\joule\per\mole}*10^3}{\SI{8,314}{\joule\per\mole\per\kelvin}*\SI{305}{\kelvin}}}*\si{\liter \per \milli \mol \per \second}\\
 	&=9,96*10^{-5}\si{\liter\per\milli\mole\per\second}
 \end{flalign}
-\textit{Im folgenden wird die Reaktionsordnung n = 2  und eine Verweilzeit von $\tau=\SI{0,25}{\hour}$ angenommen}
+\textit{Im Folgenden wird die Reaktionsordnung n = 2  und eine Verweilzeit von $\tau=\SI{0,25}{\hour}$ angenommen. Als Reaktor wurde sich auf einen kontinuierlichen Rührkessel festgelegt.}
 \begin{flalign}
 	X*\frac{c_0}{\tau}&=k*c_0^n*(1-X)^n\\
 	c_0&=\frac{X}{\tau*k*(1-X)^n}\\
